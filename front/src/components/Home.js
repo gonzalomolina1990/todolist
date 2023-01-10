@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Table} from 'react-bootstrap';
-import './bootstrap.min.css';
 import Todos from './to-dos'
 
 
@@ -30,13 +29,13 @@ function Home(){
                         Todos.map((item) => {
                             return(
                                 <tr>
-                                    <td key="item1">item.task</td>
+                                    <td>{item.task}</td>
 
-                                    <td key="item2">item.responsible</td>
+                                    <td>{item.responsible}</td>
 
-                                    <td key="item3">item.date</td>
+                                    <td>{item.date}</td>
 
-                                    <td key="item4">item.completed</td>
+                                    <td>{item.completed}</td>
                                 </tr>
                             )
                         })
