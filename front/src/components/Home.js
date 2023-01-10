@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button, Table} from 'react-bootstrap';
-import 'boostrap/dist/css/bootstrap.min.css';
+import './bootstrap.min.css';
 import Todos from './to-dos'
 
 
 function Home(){
     <div>
-        <div style={(margin="10rem")}>
+        <div style={{margin:"10rem"}}>
             <Table stripped bordererd hover size="sm">
                 <thead>
                     <tr>
@@ -30,13 +30,13 @@ function Home(){
                         Todos.map((item) => {
                             return(
                                 <tr>
-                                    <td>item.task</td>
+                                    <td key="item1">item.task</td>
 
-                                    <td>item.responsible</td>
+                                    <td key="item2">item.responsible</td>
 
-                                    <td>item.date</td>
+                                    <td key="item3">item.date</td>
 
-                                    <td>item.completed</td>
+                                    <td key="item4">item.completed</td>
                                 </tr>
                             )
                         })
@@ -48,3 +48,5 @@ function Home(){
         </div>
     </div>
 }
+
+export default Home;
