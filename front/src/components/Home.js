@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Table} from 'react-bootstrap';
-import Todos from './to-dos'
+import "bootstrap/dist/css/bootstrap.min.css"
+import Todos from './to-dos';
 
 
 function Home(){
@@ -9,33 +10,33 @@ function Home(){
             <Table stripped bordererd hover size="sm">
                 <thead>
                     <tr>
-                        <th>
+                        <th key="task">
                             Task
                         </th>
-                        <th>
+                        <th key="responsible">
                             Responsible
                         </th>
-                        <th>
+                        <th key="date">
                             Date
                         </th>
-                        <th>
+                        <th key="completed">
                             Completed
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        Todos && Todos.length > 0 ?
+                        Todos ?
                         Todos.map((item) => {
                             return(
-                                <tr>
-                                    <td>{item.task}</td>
+                                <tr key="td">
+                                    <td key={"1"}>{item.task}</td>
 
-                                    <td>{item.responsible}</td>
+                                    <td key={"2"}>{item.responsible}</td>
 
-                                    <td>{item.date}</td>
+                                    <td key={"3"}>{item.date}</td>
 
-                                    <td>{item.completed}</td>
+                                    <td key={"4"}>{item.completed}</td>
                                 </tr>
                             )
                         })
