@@ -5,7 +5,7 @@ import Todos from './to-dos';
 
 
 function Home(){
-    <div>
+    return(<div>
         <div style={{margin:"10rem"}}>
             <Table stripped bordererd hover size="sm">
                 <thead>
@@ -46,7 +46,7 @@ function Home(){
             
             </Table>
         </div>
-    </div>
+    </div>)
 }
 
 export default Home;
