@@ -4,6 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Todos from './to-dos';
 import {v4 as uuid} from "uuid";
 import {Link, useNavigate} from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import '../App.css';
+
 
 function Edit(){
     const[task, setTask] = useState('');
@@ -44,32 +49,49 @@ function Edit(){
 
 
     return(
-        <div>
-            <Form className="d-grid gap-2" style={{margin:"15rem"}}>
-                <Form.Group className="mb-3" controlId="formName">
-                    <Form.Control type="text" placeholder="Enter Task" value={task} required onChange={ (e) => setTask(e.target.value)}> 
-                    </Form.Control>
-                </Form.Group>
+        <Container fluid>
 
-                <Form.Group className="mb-3" controlId="formName">
-                    <Form.Control type="text" placeholder="Enter Responsible Name" value={responsible} required onChange={ (e) => setResponsible(e.target.value)}> 
-                    </Form.Control>
-                </Form.Group>
+            <Row>
+                <Col>
+                    <h1>Edit {task}</h1>
+                </Col>
+            </Row>
 
-                <Form.Group className="mb-3" controlId="formName">
-                    <Form.Control type="text" placeholder="Enter Date" value={date} required onChange={ (e) => setDate(e.target.value)}> 
-                    </Form.Control>
-                </Form.Group>
+            <Row>
+                <Col>
+                <Row>
+                <Col>
+                    <Form className="d-grid gap-2" style={{margin:"auto"}}>
+                    <Form.Group className="mb-3" controlId="formName">
+                        <Form.Control type="text" placeholder="Enter Task" value={task} required onChange={ (e) => setTask(e.target.value)}> 
+                        </Form.Control>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formName">
-                    <Form.Control type="text" placeholder="Is completed" value={completed} required onChange={ (e) => setCompleted(e.target.value)}> 
-                    </Form.Control>
-                </Form.Group>
-                
-                <Button onClick={(e)=>{ handleSubmit(e)}} type="submit" >Submit</Button>
+                    <Form.Group className="mb-3" controlId="formName">
+                        <Form.Control type="text" placeholder="Enter Responsible Name" value={responsible} required onChange={ (e) => setResponsible(e.target.value)}> 
+                        </Form.Control>
+                    </Form.Group>
 
-            </Form>
-        </div>
+                    <Form.Group className="mb-3" controlId="formName">
+                        <Form.Control type="text" placeholder="Enter Date" value={date} required onChange={ (e) => setDate(e.target.value)}> 
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formName">
+                        <Form.Control type="text" placeholder="Is completed" value={completed} required onChange={ (e) => setCompleted(e.target.value)}> 
+                        </Form.Control>
+                    </Form.Group>
+                    
+                    <Button onClick={(e)=>{ handleSubmit(e)}} type="submit" >Submit</Button>
+
+                    </Form>
+                </Col>
+            </Row>
+                </Col>
+            </Row>
+
+   
+        </Container>
     )
 
 }
