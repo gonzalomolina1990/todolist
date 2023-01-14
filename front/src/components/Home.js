@@ -3,6 +3,9 @@ import {Button, Table} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css"
 import Todos from './to-dos';
 import {Link, useNavigate} from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 function Home(){
@@ -31,64 +34,79 @@ function Home(){
     }
 
     return(<div>
-        <div style={{margin:"10rem"}}>
-            <Table stripped bordererd hover size="sm">
-                <thead>
-                    <tr>
-                        <th key="task">
-                            Task
-                        </th>
-                        <th key="responsible">
-                            Responsible
-                        </th>
-                        <th key="date">
-                            Date
-                        </th>
-                        <th key="completed">
-                            Completed
-                        </th>
-                        <th key="completed">
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        Todos && Todos.length > 0 ?
-                        Todos.map((item) => {
-                            return(
-                                <tr key="td">
-                                    <td key={"1"}>{item.task}</td>
-
-                                    <td key={"2"}>{item.responsible}</td>
-
-                                    <td key={"3"}>{item.date}</td>
-
-                                    <td key={"4"}>{item.completed}</td>
-                                    
-                                    <td key={"5"}>
-                                        <Link to={`/edit`}>
-                                            <Button onClick={()=>{handleEdit(item.task, item.responsible, item.date, item.completed, item.id)}}>Edit</Button>
-                                        </Link>
-                                        &nbsp;
-                                        <Button onClick={()=>{handleDelete(item.id)}} variant="danger">Delete</Button>
-                                    </td>
-
-
-                                </tr>
-                            )
-                        })
-                        : "No data available"
-                    } 
-                </tbody>
+        <Container fluid style={{margin:"auto"}}>
             
-            </Table>
-            <br>
-            </br>
-            <Link className='d-grid gap-2' to={`/create`}>
-                <Button variant="success" size="lg">Create</Button>
-            </Link>
-        </div>
+            <Row>
+                <h1>To-do list!</h1>
+            </Row>
+            <Row>
+                <Col>
+                        
+                    
+                        <Row>
+                                <Col>
+                                    <Row className='mainrow'>
+                                        <Col key="task">
+                                            Task
+                                        </Col>
+                                        <Col key="responsible">
+                                            Responsible
+                                        </Col>
+                                        <Col key="date">
+                                            Date
+                                        </Col>
+                                        <Col key="completed">
+                                            Completed
+                                        </Col>
+                                        <Col key="completed">
+                                            Actions
+                                        </Col>
+                                    </Row>
+                                        {
+                                            Todos && Todos.length > 0 ?
+                                            Todos.map((item) => {
+                                                return(
+                                                    <Row key="td">
+                                                        <Col key={"1"}>{item.task}</Col>
+
+                                                        <Col key={"2"}>{item.responsible}</Col>
+
+                                                        <Col key={"3"}>{item.date}</Col>
+
+                                                        <Col key={"4"}>{item.completed}</Col>
+                                                        
+                                                        <Col key={"5"}>
+                                                            <Link to={`/edit`}>
+                                                                <Button onClick={()=>{handleEdit(item.task, item.responsible, item.date, item.completed, item.id)}}>Edit</Button>
+                                                            </Link>
+                                                            &nbsp;
+                                                            <Button onClick={()=>{handleDelete(item.id)}} variant="danger">Delete</Button>
+                                                        </Col>
+
+
+                                                    </Row>
+                                                )
+                                            })
+                                            : "No data available"
+                                        } 
+                                </Col>
+                        
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Link className='d-grid gap-2' to={`/create`}>
+                                <Button variant="success" size="lg">Create To-do</Button>
+                                </Link>
+                            </Col>
+                        </Row>
+                    
+
+
+                </Col>
+            </Row>
+            
+        </Container>
     </div>)
 }
 
