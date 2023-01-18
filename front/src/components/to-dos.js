@@ -4,21 +4,21 @@ const Todos = [
         task: "Comer",
         responsible: "Juan",
         date: "09/01/2023",
-        completed: "true"  
+        completed: true 
     },
     {
         id: "2",
         task: "Bailar",
         responsible: "Pedro",
         date: "10/01/2023",
-        completed: "false"   
+        completed: false   
     },
     {
         id: "3",
         task: "Jugar",
         responsible: "Maria",
         date: "09/01/2023",
-        completed: "true"   
+        completed: true   
     },
 ]
 

@@ -73,7 +73,7 @@ function Home(){
 
                                                         <Col key={"3"}>{item.date}</Col>
 
-                                                        <Col key={"4"}>{item.completed}</Col>
+                                                        <Col key={"4"}>{item.completed ? "True" : "False"}</Col>
                                                         
                                                         <Col key={"5"}>
                                                             <Link to={`/edit`}>

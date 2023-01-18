@@ -78,8 +78,8 @@ function Edit(){
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formName">
-                        <Form.Control type="text" placeholder="Is completed" value={completed} required onChange={ (e) => setCompleted(e.target.value)}> 
-                        </Form.Control>
+                        <Form.Switch defaultChecked={completed} checked={completed ? true : false} onChange={ (e) => setCompleted(e.target.checked)}> 
+                        </Form.Switch>
                     </Form.Group>
                     
                     <Button onClick={(e)=>{ handleSubmit(e)}} type="submit" >Submit</Button>
