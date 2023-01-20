@@ -23,6 +23,9 @@ function Edit(){
         return e.id
     }).indexOf(id);
 
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -41,7 +44,8 @@ function Edit(){
         setTask(localStorage.getItem('task'))
         setResponsible(localStorage.getItem('responsible'))
         setDate(localStorage.getItem('date'))
-        setCompleted(localStorage.getItem('completed'))
+        setCompleted(localStorage.getItem('completed')==='true');
+        console.log("use effect", (completed));
         setId(localStorage.getItem('id'))
 
 
@@ -78,7 +82,7 @@ function Edit(){
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formName">
-                        <Form.Switch defaultChecked={completed} checked={completed ? true : false} onChange={ (e) => setCompleted(e.target.checked)}> 
+                        <Form.Switch  checked={completed}  onChange={ (e) => { setCompleted(!completed);}}> 
                         </Form.Switch>
                     </Form.Group>
                     
@@ -97,3 +101,5 @@ function Edit(){
 }
 
 export default Edit;
+
+

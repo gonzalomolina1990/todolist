@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, Table} from 'react-bootstrap';
+import React, {useEffect} from 'react';
+import {Button} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css"
 import Todos from './to-dos';
 import {Link, useNavigate} from 'react-router-dom';
@@ -12,15 +12,15 @@ function Home(){
 
     let history = useNavigate()
 
-    const handleEdit = (task, responsible, date, completed, id) => {
-        localStorage.setItem('task', task);
-        localStorage.setItem('responsible', responsible);
-        localStorage.setItem('date', date);
-        localStorage.setItem('completed', completed);
-        localStorage.setItem('id', id);
+    const handleEdit = (item) => {
+        localStorage.setItem('task', item.task);
+        localStorage.setItem('responsible', item.responsible);
+        localStorage.setItem('date', item.date);
+        localStorage.setItem('completed', item.completed);
+        localStorage.setItem('id', item.id);
 
+        //localStorage.setItem("Todos", JSON.stringify(Todos))
 
-        Todos.push();
     }
 
     const handleDelete = (id) => {
@@ -32,6 +32,8 @@ function Home(){
 
         history('/');
     }
+
+
 
     return(<div>
         <Container fluid style={{margin:"auto"}}>
@@ -77,7 +79,7 @@ function Home(){
                                                         
                                                         <Col key={"5"}>
                                                             <Link to={`/edit`}>
-                                                                <Button onClick={()=>{handleEdit(item.task, item.responsible, item.date, item.completed, item.id)}}>Edit</Button>
+                                                                <Button onClick={()=>{console.log(item); handleEdit(item)}}>Edit</Button>
                                                             </Link>
                                                             &nbsp;
                                                             <Button onClick={()=>{handleDelete(item.id)}} variant="danger">Delete</Button>
