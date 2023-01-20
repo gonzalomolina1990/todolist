@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button} from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css"
 import Todos from './to-dos';
@@ -10,7 +10,11 @@ import Col from 'react-bootstrap/Col';
 
 function Home(){
 
+    const [list, setList] = useState(Todos);
+
     let history = useNavigate()
+
+
 
     const handleEdit = (item) => {
         localStorage.setItem('task', item.task);
@@ -19,21 +23,37 @@ function Home(){
         localStorage.setItem('completed', item.completed);
         localStorage.setItem('id', item.id);
 
-        //localStorage.setItem("Todos", JSON.stringify(Todos))
 
     }
 
     const handleDelete = (id) => {
-        var index = Todos.map(function(e){
-            return e.id
-        }).indexOf(id);
+        let newState = [];
 
-        Todos.splice(index,1);
+        for (const item of list) {
 
-        history('/');
+            console.log(item);
+
+            if (item.id !== id) {
+                newState.push(item);
+            } 
+        }
+
+        console.log("new", newState);
+
+        localStorage.setItem("Todos", JSON.stringify(newState));
+        setList(newState);
+
+        history("/");
     }
 
+    useEffect(()=>{
 
+        if (localStorage.getItem("Todos")) {
+            setList(JSON.parse(localStorage.getItem("Todos")));
+        } else {
+            localStorage.setItem("Todos", JSON.stringify(Todos))
+        }
+    }, [])
 
     return(<div>
         <Container fluid style={{margin:"auto"}}>
@@ -48,38 +68,38 @@ function Home(){
                         <Row>
                                 <Col>
                                     <Row className='mainrow'>
-                                        <Col key="task">
+                                        <Col>
                                             Task
                                         </Col>
-                                        <Col key="responsible">
+                                        <Col >
                                             Responsible
                                         </Col>
-                                        <Col key="date">
+                                        <Col >
                                             Date
                                         </Col>
-                                        <Col key="completed">
+                                        <Col >
                                             Completed
                                         </Col>
-                                        <Col key="completed">
+                                        <Col >
                                             Actions
                                         </Col>
                                     </Row>
                                         {
-                                            Todos && Todos.length > 0 ?
-                                            Todos.map((item) => {
+                                            list && list.length > 0 ?
+                                            list.map((item) => {
                                                 return(
-                                                    <Row key="td">
-                                                        <Col key={"1"}>{item.task}</Col>
+                                                    <Row >
+                                                        <Col >{item.task}</Col>
 
-                                                        <Col key={"2"}>{item.responsible}</Col>
+                                                        <Col >{item.responsible}</Col>
 
-                                                        <Col key={"3"}>{item.date}</Col>
+                                                        <Col >{item.date}</Col>
 
-                                                        <Col key={"4"}>{item.completed ? "True" : "False"}</Col>
+                                                        <Col >{item.completed ? "True" : "False"}</Col>
                                                         
-                                                        <Col key={"5"}>
+                                                        <Col>
                                                             <Link to={`/edit`}>
-                                                                <Button onClick={()=>{console.log(item); handleEdit(item)}}>Edit</Button>
+                                                                <Button onClick={()=>{handleEdit(item)}}>Edit</Button>
                                                             </Link>
                                                             &nbsp;
                                                             <Button onClick={()=>{handleDelete(item.id)}} variant="danger">Delete</Button>

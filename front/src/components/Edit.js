@@ -19,9 +19,7 @@ function Edit(){
 
     let history = useNavigate();
 
-    var index = Todos.map(function(e){
-        return e.id
-    }).indexOf(id);
+    let currentState = JSON.parse(localStorage.getItem("Todos"));
 
 
 
@@ -29,13 +27,30 @@ function Edit(){
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        let newState = [];
 
-        let a = Todos[index];
-        
-        a.task = task;
-        a.responsible = responsible;
-        a.date = date;
-        a.completed = completed;
+        for (const item of currentState) {
+
+            
+
+
+            if (item.id === localStorage.getItem("id")) {
+                newState.push({
+                    id: id,
+                    task: task,
+                    responsible : responsible,
+                    date : date,
+                    completed : completed
+                })
+                
+            } else {
+                newState.push(item);
+            }
+        }
+
+        console.log("new", newState);
+
+        localStorage.setItem("Todos", JSON.stringify(newState));
 
         history("/");
     }
@@ -45,7 +60,6 @@ function Edit(){
         setResponsible(localStorage.getItem('responsible'))
         setDate(localStorage.getItem('date'))
         setCompleted(localStorage.getItem('completed')==='true');
-        console.log("use effect", (completed));
         setId(localStorage.getItem('id'))
 
 

@@ -16,18 +16,24 @@ function Add() {
     const[date, setDate] = useState('');
     const[completed, setCompleted] = useState('');
 
+
+
     let history = useNavigate();
 
+    let currentState = JSON.parse(localStorage.getItem("Todos"));
+
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
         const ids = uuid();
         let uniqueId = ids.slice(0,8);
 
         let a = task, b = responsible, c = date, d = completed;
+        currentState.push({id: uniqueId, task: a, responsible: b, date: c, completed: d})
 
-        Todos.push({id: uniqueId, task: a, responsible: b, date: c, completed: d} )
-    
+
+        localStorage.setItem("Todos", JSON.stringify(currentState));
         history("/");
     }
 
